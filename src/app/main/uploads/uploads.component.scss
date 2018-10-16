@@ -52,10 +52,12 @@ section.customerUploads {
 .uploadlable{
     display: flex!important;
     align-items: center;
-    float: right;
+    margin-left: 10px;
+    color: #4f6875;
+    font-weight: normal;
 }
 .uploadlable .mat-icon{
-    margin-right: 7px;
+    margin-right: 3px;
 }
 
 mat-panel-title.mat-expansion-panel-header-title {
@@ -111,7 +113,10 @@ mat-icon.attachment_icon.mat-icon.material-icons {
 .comment{
     text-decoration: none; 
     margin-bottom: 5px;
-    font-weight: bold;
+    // font-weight: bold;
+}
+.gly_comment{
+    margin-left: -5px;
 }
 .backdrop{ 
     background-color:rgba(0,0,0,0.6);
@@ -129,7 +134,9 @@ mat-icon.attachment_icon.mat-icon.material-icons {
 .delete_icon{
     cursor: pointer;
 }
-
+.dropdown-menu {
+   z-index: 10 !important;
+}
 
 
 

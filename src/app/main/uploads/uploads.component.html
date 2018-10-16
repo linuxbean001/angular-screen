@@ -104,14 +104,32 @@
                           </mat-expansion-panel-header>
                           <div class="row">
                             <div class="col-md-12 uploadButtonBox">
-                                <input ngClass="hide" class="selfAssessmentUpload" id="input-file-id" type="file" (change)="onChnageSelectedFile($event)" />
-                                <a role="button" class="comment" (click)="_comments()"> <span class="glyphicon glyphicon-comment" ></span>&nbsp;
-                                  Leave Comments </a>&nbsp;
-                                
-                                <label for="input-file-id" mat-raised-button color="primary" class="uploadlable">
+                               <div class="col-md-1 text-right"> 
+                                    <div class="dropdown"> 
+                                      <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+                                        <span class="glyphicon glyphicon-menu-hamburger tableRowAction ">
+                                        </span> 
+                                      </a> 
+                                      <ul class="dropdown-menu"> 
+                                        <li> 
+                                            <input ngClass="hide" class="selfAssessmentUpload" id="input-file-id" type="file" (change)="onChnageSelectedFile($event)" />
+                                            <a role="button" class="comment" (click)="_comments()">
+                                          <span class="glyphicon glyphicon-comment gly_comment"></span>
+                                          <span>  Leave Comments  </span>
+                                        </a> 
+                                      </li> 
+                                      <li> 
+                                          <label for="input-file-id" mat-raised-button color="primary" class="uploadlable">
                                  
-                                  <mat-icon >cloud_upload</mat-icon> Weitere Hochladen</label>
+                                              <mat-icon >cloud_upload</mat-icon>
+                                              <span class="lab"> Weitere Hochladen</span> 
+                                          </label>
+                                      </li> 
+                                    </ul> 
+                                  </div> 
+                                </div>
                             </div>
+                            
                             
                             <div class="commentBox form-group" *ngIf="imageStatus1">
                                 <textarea #box name="comment_field" [(ngModel)]="comment" class="form-control" (keyup.enter)="onEnter(box.value)"></textarea>
@@ -126,7 +144,7 @@
                                     Am besten einmal als die fertige Datei, bevor Sie diese ausdrucken und als zweite Datei nachdem Sie die Selbstauskunft ausgedruckt und unterschrieben haben. Dies erleichtert und beschleunigt unsere Bearbeitung.
                                 </p>
                                 <div class="attachments">
-                                  <p class="attached" *ngFor="let file of selfAssessmentFiles.reverse()">
+                                  <p class="attached" *ngFor="let file of selfAssessmentFiles">
                                       <mat-icon class="attachment_icon">attachment</mat-icon>
                                       <a href="#">{{file.name}} {{file.size && file.size!=0 ? '('+(file.size/1024).toFixed(1)+'KB)' :'' }}</a>&nbsp;
                                       <span class="time">({{currentDate | date: 'dd/MM/yyyy , h:mm a'}})
@@ -138,7 +156,7 @@
                                     <mat-card-content>
                                       <p class="chet cunsltant_chet"><span class="name">Consultant</span>: Bitte noch die Bilder von Jenny hochladen <span class="time">11:30 PM</span> </p>
                                       <mat-divider [inset]="true"></mat-divider>
-                                      <p class="chet customer_chet" *ngFor="let chat of fieldArray">
+                                      <p class="chet customer_chet" *ngFor="let chat of fieldArray.reverse()">
                                         <span class="name" >Customer</span>: {{chat}}
                                         <span class="time">11:40 PM</span>
                                       </p>
@@ -163,12 +181,37 @@
                           </mat-expansion-panel-header>
                           <div class="row">
                             <div class="col-md-12 uploadButtonBox">
-                                <input ngClass="hide" class="identityCardsUpload" id="input-file-idCards" type="file" (change)="onChnageSelectedFile($event)"/>
-                                <a role="button" class="comment" (click)="_comments2()"> <span class="glyphicon glyphicon-comment" ></span>&nbsp;
-                                  Leave Comments </a>&nbsp;
                                 
-                                <label for="input-file-idCards" mat-raised-button color="primary" class="uploadlable"><mat-icon >cloud_upload</mat-icon>Hochladen</label>
+                                
                               
+
+                                <div class="col-md-1 text-right"> 
+                                    <div class="dropdown"> 
+                                      <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+                                        <span class="glyphicon glyphicon-menu-hamburger tableRowAction ">
+                                        </span> 
+                                      </a> 
+                                      <ul class="dropdown-menu"> 
+                                        <li> 
+                                            <input ngClass="hide" class="identityCardsUpload" id="input-file-idCards" type="file" (change)="onChnageSelectedFile($event)"/>
+                                            <a role="button" class="comment" (click)="_comments2()"> 
+                                          <span class="glyphicon glyphicon-comment gly_comment"></span>
+                                          <span>  Leave Comments  </span>
+                                        </a> 
+                                      </li> 
+                                      <li> 
+                                          <label for="input-file-idCards" mat-raised-button color="primary" class="uploadlable">
+                                 
+                                              <mat-icon >cloud_upload</mat-icon>
+                                              <span class="lab"> Weitere Hochladen</span> 
+                                          </label>
+                                      </li> 
+                                    </ul> 
+                                  </div> 
+                                </div>
+
+
+
                             </div>
                             <div class="commentBox form-group" *ngIf="imageStatus2">
                               <textarea #box name="comment_field" [(ngModel)]="comment2" class="form-control" (keyup.enter)="onEnter2(box.value)"></textarea>
@@ -178,7 +221,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="attachments">
-                                    <p class="attached" *ngFor="let file of identityCardsFiles.reverse()">
+                                    <p class="attached" *ngFor="let file of identityCardsFiles">
                                         <mat-icon class="attachment_icon">attachment</mat-icon>
                                         <a href="#">{{file.name}} {{file.size && file.size!=0 ? 
                                         '('+(file.size/1024).toFixed(1)+'KB)' :'' }}</a>&nbsp;
@@ -189,7 +232,7 @@
                                   </div>                            
                             <mat-card class="chetingBox">       
                                 <mat-card-content>                                  
-                                  <p class="chet" *ngFor="let chat of fieldArray">
+                                  <p class="chet" *ngFor="let chat of fieldArray2.reverse()">
                                     <span class="name">Customer</span>:{{chat}} <span class="time">11:40 PM</span></p>
                                 </mat-card-content>        
                             </mat-card>
@@ -212,9 +255,25 @@
                         </mat-expansion-panel-header>
                         <div class="row">
                           <div class="col-md-12 uploadButtonBox">
-                              <input ngClass="hide" class="saleryStatmentUpload" id="input-file-idSal" type="file" (change)="onChnageSelectedFile($event)" />
-                              <label for="input-file-idSal" mat-raised-button color="primary" class="uploadlable"><mat-icon >cloud_upload</mat-icon> Weitere Hochladen</label>
-                            
+                              
+                              <div class="col-md-1 text-right"> 
+                                  <div class="dropdown"> 
+                                    <a role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+                                      <span class="glyphicon glyphicon-menu-hamburger tableRowAction ">
+                                      </span> 
+                                    </a> 
+                                    <ul class="dropdown-menu"> 
+                                      <li> 
+                                          <input ngClass="hide" class="saleryStatmentUpload" id="input-file-idSal" type="file" (change)="onChnageSelectedFile($event)" />
+                                          <label for="input-file-idSal" mat-raised-button color="primary" class="uploadlable">
+                                            <mat-icon >cloud_upload</mat-icon> Weitere Hochladen</label>
+                                          
+                                     
+                                    </li> 
+                                    
+                                  </ul> 
+                                </div> 
+                              </div>
                           </div>
 
                           <div class="col-md-12 text-center">
@@ -223,7 +282,7 @@
                           <mat-divider [inset]="true"></mat-divider>
                           <div class="col-md-12">
                               <div class="attachments">
-                                  <p class="attached" *ngFor="let file of saleryStatmentFiles.reverse()">
+                                  <p class="attached" *ngFor="let file of saleryStatmentFiles">
                                       <mat-icon class="attachment_icon">attachment</mat-icon>
                                       <a href="#">{{file.name}} {{file.size && file.size!=0 ? '('+(file.size/1024).toFixed(1)+'KB)' :'' }}</a>&nbsp;
                                       <span class="time">({{currentDate | date: 'dd/MM/yyyy , h:mm a'}})

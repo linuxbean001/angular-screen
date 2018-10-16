@@ -15,6 +15,7 @@ export class UploadsComponent implements OnInit {
   imageStatus1=null;
   imageStatus2=null;
   fieldArray: Array<string> = [];
+  fieldArray2: Array<string> = [];
   valueStatus = null;
   chats
   uploadedDoc = {
@@ -28,7 +29,9 @@ export class UploadsComponent implements OnInit {
     {name:'Why_fu?r_Trainees.pdf',size:46754},
     {name:'Selbstauskunft_Fam.Wüst.pdf',size:351421}
   ];
-  identityCardsFiles=[];
+  identityCardsFiles=[
+    
+  ];
   saleryStatmentFiles=[    
     {name:'Lohnabrechnung05.2016_WüstJennifer.pdf',size:46754},
     {name:'Lohnabrechnung05.2016_WüstChristian.pdf',size:351421}  
@@ -80,7 +83,7 @@ export class UploadsComponent implements OnInit {
   onEnter(value){
     console.log('xxxx--',value);
     this.message = value;
-    this.fieldArray.reverse().push(this.comment);
+    this.fieldArray.push(this.comment);
 
     this.imageStatus1 = !this.imageStatus1;
     this.comment = '';
@@ -93,7 +96,7 @@ export class UploadsComponent implements OnInit {
   onEnter2(value){
     console.log('xxxx--',value);
     this.message = value;
-    this.fieldArray.reverse().push(this.comment2);
+    this.fieldArray2.push(this.comment2).toString;
     this.imageStatus2 = !this.imageStatus2;
     this.comment2 = '';
   }
