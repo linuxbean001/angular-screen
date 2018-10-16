@@ -1,0 +1,30 @@
+<section class="tickets">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Ticketsystem</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card>
+          <mat-card-title>Tickets</mat-card-title>
+          <mat-card-content>
+            <button mat-raised-button color="primary" (click)="createTicket()">
+              <mat-icon>add</mat-icon> Neues Ticket erstellen
+            </button>
+
+            <p>&nbsp;</p>
+
+            <table class="table table-hover table-condensed">
+              <tr *ngFor="let ticket of tickets" (click)="editTicket(ticket)">
+                <td>{{ ticket.subject }}</td>
+              </tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>

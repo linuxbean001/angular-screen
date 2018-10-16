@@ -1,0 +1,14 @@
+@import "../../../variables";
+
+section.welcome {
+  background: url("/assets/pattern.svg");
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+
+  h1 {
+    display: block;
+    margin: 0;
+    text-align: center;
+  }
+}

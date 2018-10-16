@@ -1,0 +1,3 @@
+[submodule "src/app/app-common/api-client"]
+	path = src/app/app-common/api-client
+	url = https://gitlab.ap-software.de/main/generated-api-client.git

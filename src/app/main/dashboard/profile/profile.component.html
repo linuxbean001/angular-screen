@@ -1,0 +1,69 @@
+<section class="profile">
+  <div class="container">
+    <div class="row" *ngIf="loading">
+      <div class="col-xs-12">
+        <app-spinner></app-spinner>
+      </div>
+    </div>
+
+    <div class="row" [hidden]="loading">
+      <div class="col-md-12">
+        <h1>Profil bearbeiten</h1>
+      </div>
+    </div>
+
+    <div class="row" [hidden]="loading">
+      <div class="col-md-6">
+        <form class="form-horizontal" *ngIf="user" (submit)="updateUser()">
+          <mat-card>
+            <mat-card-title>Daten ändern</mat-card-title>
+            <mat-card-content>
+              <mat-form-field>
+                <input type="text" matInput
+                       id="inputFirstName" name="inputFirstName"
+                       placeholder="Vorname" [(ngModel)]="user.firstName">
+              </mat-form-field>
+              <mat-form-field>
+                <input type="text" matInput
+                       id="inputLastName" name="inputLastName"
+                       placeholder="Nachname" [(ngModel)]="user.lastName">
+              </mat-form-field>
+              <mat-form-field>
+                <input type="email" matInput
+                       id="inputEmail" name="inputEmail"
+                       placeholder="E-Mail" [(ngModel)]="user.primaryMail">
+              </mat-form-field>
+              <button type="submit" mat-raised-button color="primary">Speichern</button>
+            </mat-card-content>
+          </mat-card>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <form class="form-horizontal" (submit)="updatePassword()">
+          <mat-card>
+            <mat-card-title>Passwort ändern</mat-card-title>
+            <mat-card-content>
+              <mat-form-field>
+                <input type="password" matInput
+                       id="inputOldPassword" name="inputOldPassword"
+                       placeholder="Altes Passwort" [(ngModel)]="oldPassword">
+              </mat-form-field>
+              <mat-form-field>
+                <input type="password" matInput
+                       id="inputPassword1" name="inputPassword1"
+                       placeholder="Neues Passwort" [(ngModel)]="password1">
+              </mat-form-field>
+              <mat-form-field>
+                <input type="password" matInput
+                       id="inputPassword2" name="inputPassword2"
+                       placeholder="Passwort wiederholen" [(ngModel)]="password2">
+              </mat-form-field>
+              <button type="submit" mat-raised-button color="primary">Passwort ändern</button>
+            </mat-card-content>
+          </mat-card>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

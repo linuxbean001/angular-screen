@@ -1,0 +1,62 @@
+<section class="ticket">
+  <div class="container" *ngIf="!ticket">
+    <app-spinner *ngIf="!ticket"></app-spinner>
+  </div>
+
+  <div class="container" *ngIf="ticket">
+    <div class="row">
+      <div class="col-xs-12">
+        <input type="text" class="h1 ticket-subject" name="ticket-subject"
+               [ngModel]="ticket.subject" (ngModelChange)="saveTicketAttribute('subject', $event)">
+      </div>
+    </div>
+
+    <div class="row" *ngIf="ticket && team">
+      <div class="col-md-8">
+
+        <mat-card>
+          <mat-card-title><span class="mat-subheading-1">Beschreibung</span></mat-card-title>
+          <mat-card-content>
+            <app-tiny-mce [content]="ticket.body" (contentChange)="saveTicketAttribute('body', $event)"></app-tiny-mce>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card>
+          <mat-card-title><span class="mat-subheading-1">Kommentare</span></mat-card-title>
+          <mat-card-content>
+            ...
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col-md-4 ticket-attributes">
+        <mat-card>
+          <mat-card-title><span class="mat-subheading-1">Eigenschaften</span></mat-card-title>
+          <mat-card-content>
+            <p>
+              <mat-form-field>
+                <mat-select [value]="ticket.priority" (valueChange)="saveTicketAttribute('priority', $event)" placeholder="Priorität">
+                  <mat-option [value]="priority" *ngFor="let priority of team.priorities">{{ priority.displayName }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-select [value]="ticket.category" (valueChange)="saveTicketAttribute('category', $event)" placeholder="Kategorie">
+                  <mat-option [value]="category" *ngFor="let category of team.categories">{{ category.displayName }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field>
+                <mat-select [value]="ticket.status" (valueChange)="saveTicketAttribute('status', $event)" placeholder="Status">
+                  <mat-option [value]="status" *ngFor="let status of team.status">{{ status.displayName }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</section>

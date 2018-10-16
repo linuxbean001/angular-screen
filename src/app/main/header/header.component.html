@@ -1,0 +1,49 @@
+<nav class="navbar navbar-inverse mat-elevation-z6">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" mat-button routerLink="/dashboard" routerLinkActive="active">
+        <img src="/assets/logo-bright.svg" alt="AP-Software" width="40">
+      </a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLink="/uploads" routerLinkActive="active"><a mat-button>Uploads</a></li>
+        <li routerLink="/tickets" routerLinkActive="active"><a mat-button>Ticketsystem</a></li>
+        <li routerLink="/customers" routerLinkActive="active"><a mat-button>Kunden</a></li>
+          <li routerLink="/consultant" routerLinkActive="active"><a mat-button>Document</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="selectedTeam | async"><!-- Team -->
+          <a mat-button [matMenuTriggerFor]="teamsMenu">
+            <mat-icon>group</mat-icon>
+            <span>{{ (selectedTeam | async).name }}</span>
+            <mat-icon>expand_more</mat-icon>
+          </a>
+          <mat-menu #teamsMenu="matMenu" [overlapTrigger]="false">
+            <button *ngFor="let team of (teams | async)"
+                    mat-menu-item (click)="selectTeam(team)">{{ team.name }}</button>
+          </mat-menu>
+        </li>
+        <li><!-- User -->
+          <a mat-button [matMenuTriggerFor]="userMenu">
+            <mat-icon>person</mat-icon>
+            <span>{{ username | async }}</span>
+            <mat-icon>expand_more</mat-icon>
+          </a>
+          <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item routerLink="/dashboard/profile">Profil</button>
+            <button mat-menu-item routerLink="/admin">Administration</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

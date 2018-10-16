@@ -1,0 +1,9 @@
+@import "../../../variables";
+
+section.dashboard {
+  background-color: mat-color($app-primary, 50);
+}
+
+mat-card, .row {
+  margin-top: 15px;
+}

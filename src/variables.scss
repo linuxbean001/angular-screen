@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+$font: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+$app-primary: mat-palette($mat-blue-gray);
+$app-accent:  mat-palette($mat-blue-gray, A200, A100, A400);
+$app-warn:    mat-palette($mat-red);
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+$primary-darkest:  mat-color($app-primary, 900);
+$primary-darker:   mat-color($app-primary, 800);
+$primary-dark:     mat-color($app-primary, 600);
+$primary-medium:   mat-color($app-primary, 400);
+$primary-light:    mat-color($app-primary, 200);
+$primary-lighter:  mat-color($app-primary, 50);
+$primary-lightest: #fff;

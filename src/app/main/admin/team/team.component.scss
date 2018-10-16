@@ -1,0 +1,15 @@
+@import "../../../../variables";
+
+.team-name {
+  width: 100%;
+}
+
+.members-table {
+  tr > td:last-child {
+    width: 40px;
+
+    mat-icon {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// Import custom variables
+@import "variables";
+
+// Import Bootstrap with custom variables
+@import 'bootstrap-variables';
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap';
+
+// Build angular material theme
+@import '~@angular/material/theming';
+@include mat-core();
+@include angular-material-theme($app-theme);
+
+// Load material icons
+$material-icons-font-path: '~material-icons/iconfont/';
+@import '~material-icons/iconfont/material-icons.scss';
+
+// Some default styles...
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: $font;
+  color: $primary-darkest;
+  background-color: $primary-darkest;
+}

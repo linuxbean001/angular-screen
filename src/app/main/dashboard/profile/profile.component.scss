@@ -1,0 +1,14 @@
+@import "../../../../variables";
+
+section.profile {
+  background-color: mat-color($app-primary, 50);
+  padding-bottom: 40px;
+}
+
+mat-card, .row {
+  margin-top: 15px;
+}
+
+mat-form-field {
+  width: 100%;
+}

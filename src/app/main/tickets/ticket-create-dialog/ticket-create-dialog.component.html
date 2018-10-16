@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Ticket {{ loading ? '' : 'in "' + team.name + '"' }} erstellen</h1>
+
+<div mat-dialog-content *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+
+<div mat-dialog-content>
+  <p>
+    <mat-form-field class="team-name">
+      <input type="text" matInput required
+             name="ticket-subject"
+             placeholder="Betreff" [(ngModel)]="ticket.subject">
+      <mat-error>Bitte geben Sie einen Betreff ein.</mat-error>
+    </mat-form-field>
+  </p>
+
+  <p>
+    <mat-form-field class="third">
+      <mat-select [(value)]="ticket.priority" placeholder="Priorität">
+        <mat-option [value]="priority" *ngFor="let priority of team.priorities">{{ priority.displayName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="third">
+      <mat-select [(value)]="ticket.category" placeholder="Kategorie">
+        <mat-option [value]="category" *ngFor="let category of team.categories">{{ category.displayName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="third">
+      <mat-select [(value)]="ticket.status" placeholder="Status">
+        <mat-option [value]="status" *ngFor="let status of team.status">{{ status.displayName }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Abbrechen</button>
+  <button mat-raised-button color="primary" (click)="createTicket()">Ticket erstellen</button>
+</div>

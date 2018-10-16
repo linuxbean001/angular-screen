@@ -1,0 +1,80 @@
+<section class="dashboard">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Dashboard</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-card>
+          <mat-card-title>Aufgaben</mat-card-title>
+          <mat-card-content>
+            <table class="table table-hover table-condensed">
+              <tr *ngFor="let task of tasks">
+                <td>{{ task.name }}</td>
+                <td>{{ task.due }}</td>
+              </tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col-md-6">
+        <mat-card>
+          <mat-card-title>Aktive Dokumentenuploads</mat-card-title>
+          <mat-card-content>
+            <table class="table table-hover table-condensed">
+              <tr *ngFor="let activeUpload of activeUploads">
+                <td>{{ activeUpload.name }}</td>
+                <td>{{ activeUpload.due }}</td>
+              </tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-card>
+          <mat-card-title>Kundenaktivität</mat-card-title>
+          <mat-card-content>
+          ...
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="col-md-6">
+        <mat-card>
+          <mat-card-title>Team</mat-card-title>
+          <mat-card-content>
+            ...
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Testing...</h1>
+      </div>
+
+      <div class="col-md-6">
+        <app-dropdown-test></app-dropdown-test>
+      </div>
+
+      <div class="col-md-6">
+        <h3>TinyMCE</h3>
+        <h5>Editor:</h5>
+        <app-tiny-mce [(content)]="content"></app-tiny-mce>
+        <h5>Result</h5>
+        {{ content }}
+        <h5>Change content</h5>
+        <button mat-raised-button (click)="changeContent()">Change</button>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+  </div>
+</section>
