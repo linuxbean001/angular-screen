@@ -38,6 +38,10 @@ button.mat-mini-fab {
 .commentBox.form-group.ng-star-inserted {
     margin-top: 10px;
 }
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+    padding-left: 27px;
+    background: #ddd;
+}
 .company_name{
     font-size: 5vw;
 }

@@ -97,6 +97,56 @@
                 <mat-card class="uploadSection">
                   <mat-card-content class="center">
                     <p>Persönliche UNterlagen (von allen Darlehensnemern) </p>
+                      <mat-panel-title>
+                        <button mat-mini-fab [ngClass]="green">
+                          <mat-icon>{{title_status}}</mat-icon>
+                        </button>
+                        Identity Proof
+                        <a href="javascript:void(0)" class="btn btn-sm" (click)="imageStatusBox()">
+                          <mat-icon>list</mat-icon>
+                        </a>
+                      
+                        <div [ngClass]="selfAssessmentFiles1.classStatus">
+                          <a href="javascript:void(0)" (click)="openDivfunction(selfAssessmentFiles1.id)">
+                            {{selfAssessmentFiles1.status}}</a>
+                      
+                        </div>
+                      
+                      </mat-panel-title>
+                      <!-- <mat-panel-description> -->
+                        <div *ngIf="imageStatus">
+                      
+                          <div class="button-row row">
+                            <button mat-mini-fab color="'green'" (click)="StatusToConfirm(1,'Confirm','label label-success')">
+                              <mat-icon>thumb_up</mat-icon>
+                            </button>
+                      
+                            <button mat-mini-fab color="accent" (click)="StatusToConfirm(2,'Deny','label label-danger')">
+                              <mat-icon>block</mat-icon>
+                            </button>
+                      
+                      
+                      
+                            <button mat-mini-fab color="warn" (click)="StatusToConfirm(3,'Leave Comment','label label-warning')">
+                              <mat-icon>message</mat-icon>
+                            </button>
+                      
+                            <button for="input-file-id-two" mat-mini-fab color="primary">
+                              <label for="input-file-id-two">
+                                <mat-icon>backup</mat-icon>
+                              </label>
+                            </button>
+                            <input ngClass="hide" class="customerUpload" id="input-file-id-two" type="file" (change)="onChnageSelectedFile($event)" />
+                      
+                      
+                          </div>
+                      
+                        </div>
+                        <div class="commentBox form-group" *ngIf="imageStatus1">
+                          <textarea #box name="comment_field" [(ngModel)]="comment_field" class="form-control" (keyup.enter)="onEnter(box.value)"></textarea>
+                        </div>
+                      
+                      <!-- </mat-panel-description> -->
                   </mat-card-content>
                 </mat-card>
               </div>
@@ -141,12 +191,12 @@
                             <mat-icon>message</mat-icon>
                           </button>
 
-                          <button for="input-file-id-two" mat-mini-fab color="primary" >
+                          <!-- <button for="input-file-id-two" mat-mini-fab color="primary" >
                             <label for="input-file-id-two">
                               <mat-icon>backup</mat-icon>
                             </label>
                           </button>
-                          <input ngClass="hide" class="customerUpload" id="input-file-id-two" type="file" (change)="onChnageSelectedFile($event)" />
+                          <input ngClass="hide" class="customerUpload" id="input-file-id-two" type="file" (change)="onChnageSelectedFile($event)" /> -->
 
 
                         </div>
@@ -176,38 +226,11 @@
 
 
                         <div class="col-md-4">
-
-                          <!-- <input ngClass="hide" class="selfAssessmentUpload" id="input-file-id" type="file" (change)="onChnageSelectedFile($event)" />
-                        <label for="input-file-id" mat-raised-button color="primary" class="uploadlable">
-                          <mat-icon>cloud_upload</mat-icon> Weitere Hochladen
-                        </label> -->
                         </div>
                       </div>
 
                       <div class="col-md-12 text-center">
-                        <h4 class="text-left board_title">Customer</h4>
-                        <mat-card class="chetingBox">
-                          <mat-card-content>
-                            <h4>
-                              <span class="pull-left">Address Proof:</span>
-                              <span class="pull-right">
-                                <input ngClass="hide" id="input-file-id" type="file" (change)="onChnageSelectedFile($event)" />
-                                <label for="input-file-id" mat-raised-button color="primary" class="uploadlable">
-                                  <mat-icon>cloud_upload</mat-icon> Weitere Hochladen
-                                </label>
-                              </span>
-                            </h4>
-                            <p class="attached" *ngFor="let file of identityCardsFiles let i = index">
-                              <mat-icon class="attachment_icon">attachment</mat-icon>
-                              <a href="#">{{file.name}} {{file.size && file.size!=0 ?
-                                '('+(file.size/1024).toFixed(1)+'KB)' :'' }}</a>&nbsp;
-                              ({{file.lastModified | date: 'dd/MM/yyyy , h:mm a'}}) &nbsp;<a href="javascript:void(0)"
-                                (click)="del_customer_doc(i)">
-                                <mat-icon>clear</mat-icon>
-                              </a>
-                            </p>
-                          </mat-card-content>
-                        </mat-card>
+                        
                         <h4 class="text-left board_title">Consultant</h4>
                         <mat-card class="chetingBox">
                           <mat-card-content>
@@ -216,7 +239,7 @@
                               <span class="pull-right">
                                 <input ngClass="hide" id="input-file-id_one" type="file" (change)="test($event)" />
                                 <label for="input-file-id_one" mat-raised-button color="primary" class="uploadlable">
-                                  <mat-icon>cloud_upload</mat-icon> Weitere Hochladen
+                                  <mat-icon>cloud_upload</mat-icon>
                                 </label>
                               </span>
                             </h4>
@@ -238,32 +261,134 @@
                             </div>
                           </mat-card-content>
                         </mat-card>
-                        <h4 class="text-left board_title">Comments</h4>
-                        <mat-card class="chetingBox">
-                          <mat-card-content>
-
-                            <div *ngFor="let file of LeaveComment">
-                              <p class="chet cunsltant_chet"><span class="name">Consultant</span>:{{file.message}}
-                                <span class="time">{{file.currentDate
-                                  | date: 'dd/MM/yyyy , h:mm a'}}</span> </p>
-                              <mat-divider [inset]="true"></mat-divider>
-
-
-                            </div>
-                            <p class="chet customer_chet"><span class="name">Customer</span>: Alright, done <span class="time">{{currentDate
-                                | date: 'dd/MM/yyyy , h:mm a'}}
-                              </span></p>
-                          </mat-card-content>
-                        </mat-card>
-
+                       
                       </div>
                     </div>
 
-
+                  </mat-expansion-panel>
+                  <mat-expansion-panel [expanded]="getUploadStatus('identityCards').open">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                     
+                        <strong> Customer</strong>
+                      </mat-panel-title>
+                      <mat-panel-description>
+              
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col-md-12">
+                 
+                    <mat-card class="chetingBox">
+                      <mat-card-content>
+                        <h4>
+                          <span class="pull-left">Address Proof:</span>
+                          <span class="pull-right">
+                            <input ngClass="hide" id="input-file-id" type="file" (change)="onChnageSelectedFile($event)" />
+                            <label for="input-file-id" mat-raised-button color="primary" class="uploadlable">
+                              <mat-icon>cloud_upload</mat-icon>
+                            </label>
+                          </span>
+                        </h4>
+                        <p class="attached" *ngFor="let file of identityCardsFiles let i = index">
+                          <mat-icon class="attachment_icon">attachment</mat-icon>
+                          <a href="#">{{file.name}} {{file.size && file.size!=0 ?
+                            '('+(file.size/1024).toFixed(1)+'KB)' :'' }}</a>&nbsp;
+                          ({{file.lastModified | date: 'dd/MM/yyyy , h:mm a'}}) &nbsp;<a href="javascript:void(0)" (click)="del_customer_doc(i)">
+                            <mat-icon>clear</mat-icon>
+                          </a>
+                        </p>
+                      </mat-card-content>
+                    </mat-card>
+                      </div>
+                  
+                    </div>
+                  
                   </mat-expansion-panel>
 
+                  <mat-expansion-panel [expanded]="getUploadStatus('saleryStatment').open">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                      
+                        <strong> Consultant</strong>
+                      </mat-panel-title>
+                      <mat-panel-description>
+                  
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <mat-card class="chetingBox">
+                        <mat-card-content>
+                          <h4>
+                            <span class="pull-left">Voter ID:</span>
+                            <span class="pull-right">
+                              <input ngClass="hide" id="input-file-id_one" type="file" (change)="test($event)" />
+                              <label for="input-file-id_one" mat-raised-button color="primary" class="uploadlable">
+                                <mat-icon>cloud_upload</mat-icon> Weitere Hochladen
+                              </label>
+                            </span>
+                          </h4>
+                          <div class="attachments">
+                            <div *ngFor="let file of selfAssessmentFiles; let i = index">
+                              <div class="attached">
+                                <mat-icon class="attachment_icon">attachment</mat-icon>
+                                <a href="#">{{file.name}} {{file.size && file.size!=0 ?
+                                  '('+(file.size/1024).toFixed(1)+'KB)' :'' }}</a>&nbsp;
+                                ({{file.lastModified | date: 'dd/MM/yyyy , h:mm a'}})&nbsp;<a href="javascript:void(0)" (click)="del_consultant_doc(i)">
+                                  <mat-icon>clear</mat-icon>
+                                </a>
+                              </div>
+                      
+                      
+                      
+                            </div>
+                          </div>
+                        </mat-card-content>
+                      </mat-card>
+                  
+                  
+                    </div>
+                  
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel [expanded]="getUploadStatus('saleryStatment').open">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <strong> Comment</strong>
+                      </mat-panel-title>
+                      <mat-panel-description>
+                  
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <mat-card class="chetingBox">
+                        <mat-card-content>
+                          <div *ngFor="let file of LeaveComment | slice:0:counter">
+                            <p class="chet cunsltant_chet"><span class="name">Consultant</span>:{{file.message}}
+                              <span class="time">{{file.currentDate
+                                | date: 'dd/MM/yyyy , h:mm a'}}</span> </p>
+                            <mat-divider [inset]="true"></mat-divider>
+                          
+                          
+                          </div>
+                          <p class="chet customer_chet"><span class="name">Customer</span>: Alright, done <span class="time">{{currentDate
+                              | date: 'dd/MM/yyyy , h:mm a'}}--{{counter}}
+                            </span></p>
+                            <a *ngIf="LeaveComment.length > 3 && LeaveComment.length > counter " href="javascript:void(0)" (click)=loader()><mat-icon>
+                              keyboard_arrow_down
+                            </mat-icon> Load More</a>
+                         
+                        </mat-card-content>
+                      </mat-card>
+                  
+                  
+                    </div>
+                  
+                  </mat-expansion-panel>
 
                 </mat-accordion>
+
+                
               </div>
             </div>
 

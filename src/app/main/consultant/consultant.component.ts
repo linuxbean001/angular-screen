@@ -46,6 +46,7 @@ export class ConsultantComponent implements OnInit {
   comment_field=null;
   title_status='help';
   currentDate: any ="11/10/2018";
+  public counter: number = 3;
 
  
   constructor() { }
@@ -105,6 +106,10 @@ export class ConsultantComponent implements OnInit {
       this.imageStatus1 = !this.imageStatus1;
 
     }
+  }
+
+  loader(){
+    this.counter += 2;
   }
 
   onEnter(value){
